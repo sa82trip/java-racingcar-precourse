@@ -32,7 +32,7 @@
             - [ ] 에러가 난 부분부터 다시 입력 받을 수 있게 로직 구현
     - [ ] 경기 결과 출력하기
 - [ ] Car class (model)
-    - [ ] 자동차 이름에 대한 validator 구현
+    - [x] 자동차 이름에 대한 validator 구현
         - 길이가 5자 이하여야한다
         - 길이가 0보다 작아서도 안된다
         - "[Error]"로 시작하는 메시지를 포함한 IllegaArgumentException 던진다
