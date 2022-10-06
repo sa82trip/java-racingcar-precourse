@@ -35,4 +35,19 @@ public class CarTest {
         ).isInstanceOf(IllegalStateException.class).hasMessageStartingWith("[ERROR]:");
     }
 
+    @Test
+    void move() {
+        Car car = new Car(new Identification("Mike"));
+        for (int i = 0; i < 5; i++) {
+            car.move();
+        }
+        assertThat(car.getPosition().getPosition()).hasSizeBetween(0, 5);
+    }
+
+    @Test
+    void move_100_times() {
+        for (int i = 0; i < 100; i++) {
+            move();
+        }
+    }
 }
