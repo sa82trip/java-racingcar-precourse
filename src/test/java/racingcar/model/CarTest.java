@@ -14,7 +14,7 @@ public class CarTest {
     void invalidName() {
         assertThatThrownBy(() ->
                 new Car(new Identification("christophe"))
-        ).isInstanceOf(IllegalStateException.class).hasMessageStartingWith("[ERROR]:");
+        ).isInstanceOf(IllegalArgumentException.class).hasMessageStartingWith("[ERROR]:");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CarTest {
     void name_with_value_null() {
         assertThatThrownBy(() ->
                 new Car(new Identification(null))
-        ).isInstanceOf(IllegalStateException.class).hasMessageStartingWith("[ERROR]:");
+        ).isInstanceOf(IllegalArgumentException.class).hasMessageStartingWith("[ERROR]:");
     }
 
     @Test
