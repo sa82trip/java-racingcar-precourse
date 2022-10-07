@@ -13,9 +13,8 @@ class CarPositionTest {
     void modifyPosition_fail() {
         CarPosition position = new CarPosition();
         assertAll(
-                () -> assertThat(position.modifyPosition(new GameNumber(0))).hasSize(0),
-                () -> assertThat(position.modifyPosition(new GameNumber(3))).hasSize(0)
-        );
+                () -> assertThat(position.modifyPosition(GameNumber.of("0"))).hasSize(0),
+                () -> assertThat(position.modifyPosition(GameNumber.of("3"))).hasSize(0));
 
     }
 
@@ -24,8 +23,8 @@ class CarPositionTest {
     void modifyPosition_success() {
         CarPosition position = new CarPosition();
         assertAll(
-                () -> assertThat(position.modifyPosition(new GameNumber(4))).hasSize(1),
-                () -> assertThat(position.modifyPosition(new GameNumber(9))).hasSize(2)
+                () -> assertThat(position.modifyPosition(GameNumber.of("4"))).hasSize(1),
+                () -> assertThat(position.modifyPosition(GameNumber.of("9"))).hasSize(2)
         );
 
     }
