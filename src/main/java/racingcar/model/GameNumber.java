@@ -23,6 +23,10 @@ public class GameNumber {
         return Integer.parseInt(number);
     }
 
+    /**
+     * @param number in String Type
+     * @return GameNumber
+     */
     public static GameNumber of(String number) {
         try {
             return new GameNumber(getIntFromString(number));

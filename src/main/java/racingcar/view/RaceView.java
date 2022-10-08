@@ -3,16 +3,16 @@ package racingcar.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class RaceView {
-    private static String getString() {
+    private String getString() {
         return Console.readLine();
     }
 
-    private static void printQuestion(String question) {
+    public void printMessage(String question) {
         System.out.println(question);
     }
 
     public String askUserWithMessage(String question) {
-        printQuestion(question);
+        printMessage(question);
         return getString();
     }
 

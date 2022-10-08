@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import racingcar.constant.InfoMessage;
 import racingcar.model.Car;
@@ -26,5 +27,13 @@ public class RaceController {
         while (gameNumber == null) {
             gameNumber = GameNumber.of((view.askUserWithMessage(InfoMessage.TRIAL_COUNT)));
         }
+        view.printMessage(InfoMessage.GAME_RESULT);
+        for (int i = 0; i < gameNumber.getNumber(); i++) {
+            raceService.moveAndShow(cars);
+        }
+        cars.sort(Comparator.comparingInt(a -> a.getPosition().getPosition().size()));
+        view.printMessage(String.format("%s %s", InfoMessage.WINNER, cars.get(cars.size() - 1).getNameInString()));
+        //TODO: if there are more than one winner than?
     }
+
 }

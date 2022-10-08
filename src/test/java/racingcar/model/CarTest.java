@@ -3,6 +3,7 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,5 +50,13 @@ public class CarTest {
         for (int i = 0; i < 100; i++) {
             move();
         }
+    }
+
+    @Test
+    @DisplayName("should be able to retrieve carName")
+    void getNameInString() {
+        String carName = "john";
+        Car car = new Car(carName);
+        assertEquals(car.getNameInString(), carName);
     }
 }

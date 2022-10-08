@@ -12,6 +12,11 @@ public class Car {
         this.position = new CarPosition();
     }
 
+    public Car(String name) {
+        this.name = new Identification(name);
+        this.position = new CarPosition();
+    }
+
     public CarPosition getPosition() {
         return position;
     }
@@ -24,5 +29,9 @@ public class Car {
 
     public Identification getName() {
         return name;
+    }
+
+    public String getNameInString() {
+        return name.getName();
     }
 }
