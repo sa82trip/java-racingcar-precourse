@@ -42,7 +42,7 @@ public class CarTest {
         for (int i = 0; i < 5; i++) {
             car.move();
         }
-        assertThat(car.getPosition().getPosition()).hasSizeBetween(0, 5);
+        assertThat(car.getPosition().getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(5);
     }
 
     @Test

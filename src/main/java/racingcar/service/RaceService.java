@@ -9,6 +9,9 @@ import racingcar.model.Identification;
 
 public class RaceService {
 
+    public static final int ZERO = 0;
+    public static final int INDEX_ZERO = 0;
+
     public Cars returnCars(String carsNameInput) {
         String[] splitCars = carsNameInput.split(",");
         try {
@@ -33,17 +36,50 @@ public class RaceService {
 
     public String makeDashes(CarPosition position) {
         StringBuilder dashes = new StringBuilder();
-        for (int i = 0; i < position.getPosition().size(); i++) {
-            dashes.append(position.getPosition().get(i));
+        for (int i = 0; i < position.getPosition(); i++) {
+            dashes.append("-");
         }
         return dashes.toString();
     }
 
-    public void moveAndShow(Cars cars) {
+    public void move(Cars cars) {
         for (Car car :
                 cars.getCars()) {
-            System.out.printf("%s : %s%n", car.getName().getName(), makeDashes(car.move()));
+            car.move();
         }
         System.out.println();
+    }
+
+    public void displayStatus(Cars cars) {
+        for (Car car :
+                cars.getCars()) {
+            System.out.printf("%s : %s%n", car.getName().getName(), makeDashes(car.getPosition()));
+        }
+    }
+
+    public Cars detectWinner(Cars competitors) {
+        int max = ZERO;
+        Cars winnerCars = new Cars(new ArrayList<>());
+        for (Car car : competitors.getCars()) {
+            max = getMax(max, winnerCars, car);
+            addCoWinner(max, winnerCars, car);
+        }
+        return winnerCars;
+    }
+
+    private static void addCoWinner(int max, Cars winnerCars, Car car) {
+        if (max == car.getPosition().getPosition() && !winnerCars.getCars().get(INDEX_ZERO).getNameInString()
+                .equals(car.getNameInString())) {
+            winnerCars.getCars().add(car);
+        }
+    }
+
+    private static int getMax(int max, Cars winnerCars, Car car) {
+        if (max == ZERO || max < car.getPosition().getPosition()) {
+            max = car.getPosition().getPosition();
+            winnerCars.getCars().clear();
+            winnerCars.getCars().add(car);
+        }
+        return max;
     }
 }

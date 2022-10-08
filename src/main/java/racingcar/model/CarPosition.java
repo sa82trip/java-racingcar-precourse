@@ -1,24 +1,31 @@
 package racingcar.model;
 
 
-import java.util.ArrayList;
-import java.util.List;
 import racingcar.constant.ConstantNumber;
+import racingcar.constant.InfoMessage;
 
 public class CarPosition {
-    private final List<String> position;
+    private Integer position;
 
-    CarPosition() {
-        this.position = new ArrayList<>();
+    public CarPosition() {
+        this.position = 0;
     }
 
-    public List<String> getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public List<String> modifyPosition(GameNumber gameNumber) {
+    public void setPosition(Integer position) {
+        if (position < 0) {
+            throw new IllegalArgumentException(
+                    String.format("%s %s is not valid", InfoMessage.ERROR_MESSAGE_BEGIN, position));
+        }
+        this.position = position;
+    }
+
+    public Integer modifyPosition(GameNumber gameNumber) {
         if (gameNumber.getNumber() >= ConstantNumber.BORDER_NUMBER) {
-            position.add("-");
+            position++;
         }
         return this.position;
     }
