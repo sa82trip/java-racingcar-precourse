@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarPosition;
+import racingcar.model.Cars;
 import racingcar.model.Identification;
 
 public class RaceService {
 
-    public List<Car> returnCars(String carsNameInput) {
+    public Cars returnCars(String carsNameInput) {
         String[] splitCars = carsNameInput.split(",");
         try {
             return createCars(splitCars);
@@ -18,12 +19,12 @@ public class RaceService {
         return null;
     }
 
-    private List<Car> createCars(String[] splitCars) {
+    private Cars createCars(String[] splitCars) {
         List<Car> cars = new ArrayList<>();
         for (String splitCar : splitCars) {
             cars.add(createCar(splitCar));
         }
-        return cars;
+        return new Cars(cars);
     }
 
     private Car createCar(String splitCar) {
@@ -38,9 +39,9 @@ public class RaceService {
         return dashes.toString();
     }
 
-    public void moveAndShow(List<Car> cars) {
+    public void moveAndShow(Cars cars) {
         for (Car car :
-                cars) {
+                cars.getCars()) {
             System.out.printf("%s : %s%n", car.getName().getName(), makeDashes(car.move()));
         }
         System.out.println();

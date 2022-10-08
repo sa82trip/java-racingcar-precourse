@@ -1,9 +1,8 @@
 package racingcar.controller;
 
 import java.util.Comparator;
-import java.util.List;
 import racingcar.constant.InfoMessage;
-import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.model.GameNumber;
 import racingcar.service.RaceService;
 import racingcar.view.RaceView;
@@ -11,7 +10,7 @@ import racingcar.view.RaceView;
 public class RaceController {
     private final RaceView view;
     private final RaceService raceService;
-    private List<Car> cars;
+    private Cars cars;
     private GameNumber gameNumber;
 
     public RaceController(RaceView view, RaceService raceService) {
@@ -31,8 +30,9 @@ public class RaceController {
         for (int i = 0; i < gameNumber.getNumber(); i++) {
             raceService.moveAndShow(cars);
         }
-        cars.sort(Comparator.comparingInt(a -> a.getPosition().getPosition().size()));
-        view.printMessage(String.format("%s %s", InfoMessage.WINNER, cars.get(cars.size() - 1).getNameInString()));
+        cars.getCars().sort(Comparator.comparingInt(a -> a.getPosition().getPosition().size()));
+        view.printMessage(String.format("%s %s", InfoMessage.WINNER,
+                cars.getCars().get(cars.getCars().size() - 1).getNameInString()));
         //TODO: if there are more than one winner than?
     }
 

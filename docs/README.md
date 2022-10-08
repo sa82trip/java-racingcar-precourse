@@ -59,6 +59,9 @@
 
 ---
 
+- [ ] Refactoring
+    - [x] 일급컬렉션 Cars 도입
+
 ## 3. 순서도
 
 main method -> Race -> Car -> Race
