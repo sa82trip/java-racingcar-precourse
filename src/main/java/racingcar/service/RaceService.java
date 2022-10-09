@@ -3,8 +3,10 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import racingcar.constant.ConstantNumber;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.GameNumber;
 
 public class RaceService {
 
@@ -28,8 +30,7 @@ public class RaceService {
 
 
     public void move(Cars cars) {
-        for (Car car :
-                cars.getCars()) {
+        for (Car car : cars.getCars()) {
             car.move();
         }
         System.out.println();
@@ -62,13 +63,22 @@ public class RaceService {
     }
 
     public String makePrintableWinners(Cars winners) {
+        if (winners.isSoleWinner(winners)) {
+            return winners.getCars().get(0).getNameInString();
+        }
         StringBuilder winnerNames = new StringBuilder();
-        for (Car car :
-                winners.getCars()) {
+        for (Car car : winners.getCars()) {
             winnerNames.append(", ");
             winnerNames.append(car.getNameInString());
         }
         return winnerNames.substring(1).trim();
+    }
+
+    public Cars beginRace(GameNumber gameNumber, Cars cars) {
+        for (int i = ConstantNumber.MIN_INDEX; i < gameNumber.getNumber(); i++) {
+            move(cars);
+        }
+        return cars;
     }
 
 }
