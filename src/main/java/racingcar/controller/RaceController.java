@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.constant.ConstantNumber;
 import racingcar.constant.InfoMessage;
 import racingcar.model.Cars;
 import racingcar.model.GameNumber;
@@ -19,26 +20,19 @@ public class RaceController {
     }
 
     public void run() {
-        while (cars == null) {
-            cars = raceService.returnCars(view.askUserWithMessage(InfoMessage.WRITE_CAR_NAME));
-        }
-        while (gameNumber == null) {
-            gameNumber = GameNumber.of((view.askUserWithMessage(InfoMessage.TRIAL_COUNT)));
-        }
+        getCarNamesFromUser();
+        getGameNumberFromUser();
+
         view.printMessage(InfoMessage.GAME_RESULT);
         for (int i = ConstantNumber.MIN_INDEX; i < gameNumber.getNumber(); i++) {
             raceService.move(cars);
-            raceService.displayStatus(cars);
+            view.displayStatus(cars);
         }
 
         Cars winners = raceService.detectWinner(cars);
-        if (winners.isSoleWinner(winners)) {
-            view.printMessage(String.format("%s %s", InfoMessage.WINNER,
-                    winners.getCars().get(ConstantNumber.MIN_INDEX).getNameInString()));
-        }
-        if (winners.isMultipleWinner(winners)) {
-            view.printMessage(String.format("%s %s", InfoMessage.WINNER, raceService.makePrintableWinners(winners)));
-        }
+        view.printWinners(winners.isSoleWinner(winners),
+                winners.getCars().get(ConstantNumber.MIN_INDEX).getNameInString());
+        view.printWinners(winners.isMultipleWinner(winners), raceService.makePrintableWinners(winners));
     }
 
     private void getGameNumberFromUser() {

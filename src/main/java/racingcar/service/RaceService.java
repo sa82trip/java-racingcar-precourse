@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.model.Car;
-import racingcar.model.CarPosition;
 import racingcar.model.Cars;
 
 public class RaceService {
@@ -27,13 +26,6 @@ public class RaceService {
         return new Cars(carNames);
     }
 
-    public String makeDashes(CarPosition position) {
-        StringBuilder dashes = new StringBuilder();
-        for (int i = 0; i < position.getPosition(); i++) {
-            dashes.append("-");
-        }
-        return dashes.toString();
-    }
 
     public void move(Cars cars) {
         for (Car car :
@@ -41,13 +33,6 @@ public class RaceService {
             car.move();
         }
         System.out.println();
-    }
-
-    public void displayStatus(Cars cars) {
-        for (Car car :
-                cars.getCars()) {
-            System.out.printf("%s : %s%n", car.getName().getName(), makeDashes(car.getPosition()));
-        }
     }
 
     public Cars detectWinner(Cars competitors) {
