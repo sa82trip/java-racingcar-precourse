@@ -26,21 +26,31 @@ public class RaceController {
             gameNumber = GameNumber.of((view.askUserWithMessage(InfoMessage.TRIAL_COUNT)));
         }
         view.printMessage(InfoMessage.GAME_RESULT);
-        for (int i = 0; i < gameNumber.getNumber(); i++) {
+        for (int i = ConstantNumber.MIN_INDEX; i < gameNumber.getNumber(); i++) {
             raceService.move(cars);
             raceService.displayStatus(cars);
         }
-//        cars.getCars().sort(Comparator.comparingInt(a -> a.getPosition().getPosition().size()));
 
         Cars winners = raceService.detectWinner(cars);
-        if (winners.getCars().size() == 1) {
-            view.printMessage(String.format("%s %s", InfoMessage.WINNER, winners.getCars().get(0).getNameInString()));
+        if (winners.isSoleWinner(winners)) {
+            view.printMessage(String.format("%s %s", InfoMessage.WINNER,
+                    winners.getCars().get(ConstantNumber.MIN_INDEX).getNameInString()));
         }
-        if (winners.getCars().size() > 1) {
-            //TODO: make proper print for co-winner
-            winners.getCars().forEach(o -> System.out.println(o.getNameInString()));
+        if (winners.isMultipleWinner(winners)) {
+            view.printMessage(String.format("%s %s", InfoMessage.WINNER, raceService.makePrintableWinners(winners)));
         }
-        //TODO: if there are more than one winner than?
     }
 
+    private void getGameNumberFromUser() {
+        while (gameNumber == null) {
+            gameNumber = GameNumber.of((view.askUserWithMessage(InfoMessage.TRIAL_COUNT)));
+        }
+    }
+
+    private void getCarNamesFromUser() {
+        while (cars == null) {
+            cars = raceService.returnCars(view.askUserWithMessage(InfoMessage.WRITE_CAR_NAME));
+        }
+    }
 }
+

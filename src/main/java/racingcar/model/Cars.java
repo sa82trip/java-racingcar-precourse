@@ -19,4 +19,12 @@ public class Cars {
     public List<Car> getCars() {
         return cars;
     }
+
+    public boolean isMultipleWinner(Cars winners) {
+        return winners.getCars().size() > 1;
+    }
+
+    public boolean isSoleWinner(Cars winners) {
+        return winners.getCars().size() == 1;
+    }
 }

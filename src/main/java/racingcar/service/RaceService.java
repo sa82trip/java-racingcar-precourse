@@ -75,5 +75,16 @@ public class RaceService {
         }
         return max;
     }
+
+    public String makePrintableWinners(Cars winners) {
+        StringBuilder winnerNames = new StringBuilder();
+        for (Car car :
+                winners.getCars()) {
+            winnerNames.append(", ");
+            winnerNames.append(car.getNameInString());
+        }
+        return winnerNames.substring(1).trim();
+    }
+
 }
 
