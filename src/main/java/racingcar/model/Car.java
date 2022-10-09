@@ -21,6 +21,10 @@ public class Car {
         return position;
     }
 
+    public Integer getPositionInteger() {
+        return position.getPosition();
+    }
+
     public CarPosition move() {
         position.modifyPosition(new GameNumber(
                 Randoms.pickNumberInRange(ConstantNumber.START_INCLUSIVE, ConstantNumber.END_INCLUSIVE)));

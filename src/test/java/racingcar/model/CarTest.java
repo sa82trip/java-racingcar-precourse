@@ -38,11 +38,14 @@ public class CarTest {
 
     @Test
     void move() {
+        int GAME_RANGE_BEGIN = 0;
+        int GAME_RANGE_END = 5;
         Car car = new Car(new Identification("Mike"));
-        for (int i = 0; i < 5; i++) {
+        for (int i = GAME_RANGE_BEGIN; i < GAME_RANGE_END; i++) {
             car.move();
         }
-        assertThat(car.getPosition().getPosition()).isGreaterThanOrEqualTo(0).isLessThanOrEqualTo(5);
+        assertThat(car.getPositionInteger()).isGreaterThanOrEqualTo(GAME_RANGE_BEGIN)
+                .isLessThanOrEqualTo(GAME_RANGE_END);
     }
 
     @Test

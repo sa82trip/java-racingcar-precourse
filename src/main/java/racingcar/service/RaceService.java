@@ -1,11 +1,11 @@
 package racingcar.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarPosition;
 import racingcar.model.Cars;
-import racingcar.model.Identification;
 
 public class RaceService {
 
@@ -23,15 +23,8 @@ public class RaceService {
     }
 
     private Cars createCars(String[] splitCars) {
-        List<Car> cars = new ArrayList<>();
-        for (String splitCar : splitCars) {
-            cars.add(createCar(splitCar));
-        }
-        return new Cars(cars);
-    }
-
-    private Car createCar(String splitCar) {
-        return new Car(new Identification(splitCar));
+        List<String> carNames = new ArrayList<>(Arrays.asList(splitCars));
+        return new Cars(carNames);
     }
 
     public String makeDashes(CarPosition position) {
@@ -67,19 +60,20 @@ public class RaceService {
         return winnerCars;
     }
 
-    private static void addCoWinner(int max, Cars winnerCars, Car car) {
-        if (max == car.getPosition().getPosition() && !winnerCars.getCars().get(INDEX_ZERO).getNameInString()
+    protected void addCoWinner(int max, Cars winnerCars, Car car) {
+        if (max == car.getPositionInteger() && !winnerCars.getCars().get(INDEX_ZERO).getNameInString()
                 .equals(car.getNameInString())) {
             winnerCars.getCars().add(car);
         }
     }
 
-    private static int getMax(int max, Cars winnerCars, Car car) {
-        if (max == ZERO || max < car.getPosition().getPosition()) {
-            max = car.getPosition().getPosition();
+    protected int getMax(int max, Cars winnerCars, Car car) {
+        if (max == ZERO || max < car.getPositionInteger()) {
+            max = car.getPositionInteger();
             winnerCars.getCars().clear();
             winnerCars.getCars().add(car);
         }
         return max;
     }
 }
+
