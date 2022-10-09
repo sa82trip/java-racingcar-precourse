@@ -7,25 +7,24 @@ import racingcar.model.Car;
 import racingcar.model.CarPosition;
 import racingcar.model.Cars;
 import racingcar.model.GameNumber;
+import racingcar.model.UserInput;
 
 public class RaceView {
-    //TODO:: method naming
-    private String getString() {
-        return Console.readLine();
+    private UserInput getUserInput() {
+        return new UserInput(Console.readLine());
     }
 
     public void printMessage(String question) {
         System.out.println(question);
     }
 
-    public String askUserWithMessage(String question) {
+    public UserInput askUserWithMessage(String question) {
         printMessage(question);
-        return getString();
+        return getUserInput();
     }
 
     public void displayStatus(Cars cars) {
-        for (Car car :
-                cars.getCars()) {
+        for (Car car : cars.getCars()) {
             System.out.printf("%s : %s%n", car.getName().getName(), makeDashes(car.getPosition()));
         }
     }

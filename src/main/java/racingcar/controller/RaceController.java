@@ -31,14 +31,14 @@ public class RaceController {
 
     private GameNumber getGameNumberFromUser() {
         while (gameNumber == null) {
-            gameNumber = GameNumber.of((view.askUserWithMessage(InfoMessage.TRIAL_COUNT)));
+            gameNumber = GameNumber.of((view.askUserWithMessage(InfoMessage.TRIAL_COUNT).getInput()));
         }
         return gameNumber;
     }
 
     private Cars getCarNamesFromUser() {
         while (cars == null) {
-            cars = raceService.returnCars(view.askUserWithMessage(InfoMessage.WRITE_CAR_NAME));
+            cars = raceService.returnCars(view.askUserWithMessage(InfoMessage.WRITE_CAR_NAME).getInput());
         }
         return cars;
     }
