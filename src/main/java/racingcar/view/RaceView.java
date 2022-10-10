@@ -22,7 +22,7 @@ public class RaceView {
     }
 
     public void displayStatus(Cars cars) {
-        for (Car car : cars.getCars()) {
+        for (Car car : cars.getValue()) {
             System.out.printf("%s : %s%n", car.getName().getName(), car.getPositionInDashes());
         }
     }

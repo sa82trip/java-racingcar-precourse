@@ -4,27 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private final List<Car> cars;
+    private final List<Car> value;
 
 
     public Cars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
-        for (String carName :
-                carNames) {
-            cars.add(new Car(carName));
+        for (String carName : carNames) {
+            Car car = new Car(carName);
+            cars.add(car);
         }
-        this.cars = cars;
+        this.value = cars;
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public boolean isMultipleWinner(Cars winners) {
-        return winners.getCars().size() > 1;
+    public List<Car> getValue() {
+        return value;
     }
 
     public boolean isSoleWinner(Cars winners) {
-        return winners.getCars().size() == 1;
+        return winners.getValue().size() == 1;
     }
 }

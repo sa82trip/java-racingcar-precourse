@@ -21,18 +21,18 @@ class RaceServiceTest {
         service = new RaceService();
 
         cars = new Cars(Arrays.asList("john", "mike", "kim", "yb"));
-        cars.getCars().get(0).getPosition().setPosition(3);
-        cars.getCars().get(1).getPosition().setPosition(3);
-        cars.getCars().get(2).getPosition().setPosition(2);
-        cars.getCars().get(3).getPosition().setPosition(1);
+        cars.getValue().get(0).getPosition().setPosition(3);
+        cars.getValue().get(1).getPosition().setPosition(3);
+        cars.getValue().get(2).getPosition().setPosition(2);
+        cars.getValue().get(3).getPosition().setPosition(1);
     }
 
     @Test
     void createCars() {
         Cars cars = service.returnCars("John,Mike,Krist");
         assertAll(
-                () -> assertThat(cars.getCars()).hasSize(3),
-                () -> cars.getCars().forEach(one -> assertThat("John,Mike,Krist").contains(one.getName().getName()))
+                () -> assertThat(cars.getValue()).hasSize(3),
+                () -> cars.getValue().forEach(one -> assertThat("John,Mike,Krist").contains(one.getName().getName()))
         );
     }
 
@@ -40,9 +40,9 @@ class RaceServiceTest {
     void detectWinner() {
         Cars winners = service.detectWinner(cars);
         assertAll(
-                () -> assertThat(winners.getCars()).hasSize(2),
-                () -> assertThat(winners.getCars().get(0).getNameInString()).contains("john"),
-                () -> assertThat(winners.getCars().get(1).getNameInString()).contains("mike")
+                () -> assertThat(winners.getValue()).hasSize(2),
+                () -> assertThat(winners.getValue().get(0).getNameInString()).contains("john"),
+                () -> assertThat(winners.getValue().get(1).getNameInString()).contains("mike")
         );
 
     }
@@ -50,12 +50,12 @@ class RaceServiceTest {
     @Test
     void addCoWinner() {
         Cars winners = new Cars(new ArrayList<>(Collections.singletonList("john")));
-        winners.getCars().get(0).getPosition().setPosition(3);
-        int MAX = winners.getCars().get(0).getPositionInteger();
+        winners.getValue().get(0).getPosition().setPosition(3);
+        int MAX = winners.getValue().get(0).getPositionInteger();
         Car car = new Car("mike");
         car.getPosition().setPosition(3);
         service.addCoWinner(MAX, winners, car);
-        assertThat(winners.getCars().size()).isEqualTo(2);
+        assertThat(winners.getValue().size()).isEqualTo(2);
     }
 
     @Test

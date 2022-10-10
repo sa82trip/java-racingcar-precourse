@@ -27,7 +27,7 @@ public class RaceService {
 
 
     public void move(Cars cars) {
-        for (Car car : cars.getCars()) {
+        for (Car car : cars.getValue()) {
             car.move();
         }
         System.out.println();
@@ -36,7 +36,7 @@ public class RaceService {
     public Cars detectWinner(Cars competitors) {
         int max = ConstantNumber.ZERO;
         Cars winnerCars = new Cars(new ArrayList<>());
-        for (Car car : competitors.getCars()) {
+        for (Car car : competitors.getValue()) {
             max = getMax(max, winnerCars, car);
             addCoWinner(max, winnerCars, car);
         }
@@ -44,27 +44,27 @@ public class RaceService {
     }
 
     protected void addCoWinner(int max, Cars winnerCars, Car car) {
-        if (max == car.getPositionInteger() && !winnerCars.getCars().get(0).getNameInString()
+        if (max == car.getPositionInteger() && !winnerCars.getValue().get(0).getNameInString()
                 .equals(car.getNameInString())) {
-            winnerCars.getCars().add(car);
+            winnerCars.getValue().add(car);
         }
     }
 
     protected int getMax(int max, Cars winnerCars, Car car) {
         if (max == ConstantNumber.ZERO || max < car.getPositionInteger()) {
             max = car.getPositionInteger();
-            winnerCars.getCars().clear();
-            winnerCars.getCars().add(car);
+            winnerCars.getValue().clear();
+            winnerCars.getValue().add(car);
         }
         return max;
     }
 
     public String makePrintableWinners(Cars winners) {
         if (winners.isSoleWinner(winners)) {
-            return winners.getCars().get(0).getNameInString();
+            return winners.getValue().get(0).getNameInString();
         }
         StringBuilder winnerNames = new StringBuilder();
-        for (Car car : winners.getCars()) {
+        for (Car car : winners.getValue()) {
             winnerNames.append(", ");
             winnerNames.append(car.getNameInString());
         }
