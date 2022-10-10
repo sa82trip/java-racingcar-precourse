@@ -26,8 +26,9 @@ public class Car {
     }
 
     public CarPosition move() {
-        position.modifyPosition(new GameNumber(
-                Randoms.pickNumberInRange(ConstantNumber.START_INCLUSIVE, ConstantNumber.END_INCLUSIVE)));
+        int randomNumber = Randoms.pickNumberInRange(ConstantNumber.START_INCLUSIVE, ConstantNumber.END_INCLUSIVE);
+        GameNumber gameNumber = new GameNumber(randomNumber);
+        position.modifyPosition(gameNumber);
         return this.position;
     }
 
