@@ -1,6 +1,5 @@
 package racingcar.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.constant.ConstantNumber;
@@ -35,7 +34,7 @@ public class RaceService {
 
     public Cars detectWinner(Cars competitors) {
         int max = ConstantNumber.ZERO;
-        Cars winnerCars = new Cars(new ArrayList<>());
+        Cars winnerCars = new Cars();
         for (Car car : competitors.getValue()) {
             max = getMax(max, winnerCars, car);
             addCoWinner(max, winnerCars, car);
