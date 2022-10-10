@@ -31,6 +31,14 @@ public class Car {
         return this.position;
     }
 
+    public String getPositionInDashes() {
+        StringBuilder dashes = new StringBuilder();
+        for (int i = 0; i < this.position.getPosition(); i++) {
+            dashes.append("-");
+        }
+        return dashes.toString();
+    }
+
     public Identification getName() {
         return name;
     }
