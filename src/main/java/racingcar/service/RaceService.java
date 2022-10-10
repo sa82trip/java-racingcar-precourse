@@ -11,9 +11,9 @@ import racingcar.model.GameNumber;
 public class RaceService {
 
     public Cars returnCars(String carsNameInput) {
-        String[] splitCars = carsNameInput.split(",");
+        String[] splittedCarNames = carsNameInput.split(",");
         try {
-            return createCars(splitCars);
+            return createCars(splittedCarNames);
         } catch (IllegalArgumentException e) {
             System.out.printf("%s: %n", e.getMessage());
         }
@@ -21,7 +21,7 @@ public class RaceService {
     }
 
     private Cars createCars(String[] splitCars) {
-        List<String> carNames = new ArrayList<>(Arrays.asList(splitCars));
+        List<String> carNames = Arrays.asList(splitCars);
         return new Cars(carNames);
     }
 
