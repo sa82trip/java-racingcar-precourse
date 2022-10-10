@@ -43,8 +43,12 @@ public class RaceService {
     }
 
     protected void addCoWinner(int max, Cars winnerCars, Car car) {
-        if (max == car.getPositionInteger() && !winnerCars.getValue().get(0).getNameInString()
-                .equals(car.getNameInString())) {
+        boolean doesCarHasMaxValue = max == car.getPositionInteger();
+        boolean isWinnerNameSame = false;
+        for (Car winner : winnerCars.getValue()) {
+            isWinnerNameSame = winner.getName().getName().equals(car.getNameInString());
+        }
+        if (doesCarHasMaxValue && !isWinnerNameSame) {
             winnerCars.getValue().add(car);
         }
     }
