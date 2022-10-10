@@ -5,11 +5,11 @@ import racingcar.constant.ConstantNumber;
 import racingcar.constant.InfoMessage;
 
 public class GameNumber {
-    private final Integer number;
+    private final Integer value;
 
-    public GameNumber(int number) {
-        checkGameNumber(number);
-        this.number = number;
+    public GameNumber(int value) {
+        checkGameNumber(value);
+        this.value = value;
     }
 
     private static void checkGameNumber(int number) {
@@ -36,7 +36,7 @@ public class GameNumber {
         }
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getValue() {
+        return value;
     }
 }

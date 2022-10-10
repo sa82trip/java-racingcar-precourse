@@ -72,7 +72,7 @@ public class RaceService {
     }
 
     public Cars beginRace(GameNumber gameNumber, Cars cars) {
-        for (int i = 0; i < gameNumber.getNumber(); i++) {
+        for (int i = 0; i < gameNumber.getValue(); i++) {
             move(cars);
         }
         return cars;

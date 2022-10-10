@@ -32,7 +32,7 @@ public class RaceView {
     }
 
     public void reportCurrentStatus(GameNumber gameNumber, Cars cars) {
-        for (int i = 0; i < gameNumber.getNumber(); i++) {
+        for (int i = 0; i < gameNumber.getValue(); i++) {
             displayStatus(cars);
         }
     }

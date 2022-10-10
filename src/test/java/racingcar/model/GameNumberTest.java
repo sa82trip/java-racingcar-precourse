@@ -51,7 +51,7 @@ class GameNumberTest {
     void of() {
         assertAll(
                 () -> assertThat(GameNumber.of("1")).isInstanceOf(GameNumber.class),
-                () -> assertThat(Objects.requireNonNull(GameNumber.of("1")).getNumber()).isEqualTo(1)
+                () -> assertThat(Objects.requireNonNull(GameNumber.of("1")).getValue()).isEqualTo(1)
         );
     }
 

@@ -24,7 +24,7 @@ public class CarPosition {
     }
 
     public Integer modifyPosition(GameNumber gameNumber) {
-        if (gameNumber.getNumber() >= ConstantNumber.BORDER_NUMBER) {
+        if (gameNumber.getValue() >= ConstantNumber.BORDER_NUMBER) {
             position++;
         }
         return this.position;
