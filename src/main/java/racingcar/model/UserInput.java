@@ -3,7 +3,7 @@ package racingcar.model;
 import racingcar.constant.InfoMessage;
 
 public class UserInput {
-    String input;
+    private final String input;
 
     public UserInput(String input) {
         if (input == null) {
