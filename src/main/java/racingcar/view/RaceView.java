@@ -25,6 +25,7 @@ public class RaceView {
         for (Car car : cars.getValue()) {
             System.out.printf("%s : %s%n", car.getName().getName(), car.getPositionInDashes());
         }
+        System.out.println();
     }
 
     public void printWinners(String winners) {

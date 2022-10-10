@@ -29,7 +29,6 @@ public class RaceService {
         for (Car car : cars.getValue()) {
             car.move();
         }
-        System.out.println();
     }
 
     public Cars detectWinner(Cars competitors) {
