@@ -12,8 +12,8 @@ public class RaceView {
         return new UserInput(Console.readLine());
     }
 
-    public void printMessage(String question) {
-        System.out.println(question);
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 
     public UserInput askQuestionWithMessage(String question) {
