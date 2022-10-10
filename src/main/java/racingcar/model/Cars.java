@@ -10,7 +10,8 @@ public class Cars {
     public Cars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            Car car = new Car(carName);
+            Name name = new Name(carName);
+            Car car = new Car(name);
             cars.add(car);
         }
         this.value = cars;

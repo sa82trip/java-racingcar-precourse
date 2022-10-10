@@ -45,7 +45,7 @@ public class RaceService {
         boolean doesCarHasMaxValue = max == car.getPositionInteger();
         boolean isWinnerNameSame = false;
         for (Car winner : winnerCars.getValue()) {
-            isWinnerNameSame = winner.getName().getName().equals(car.getNameInString());
+            isWinnerNameSame = winner.getName().getValue().equals(car.getNameInString());
         }
         if (doesCarHasMaxValue && !isWinnerNameSame) {
             winnerCars.getValue().add(car);

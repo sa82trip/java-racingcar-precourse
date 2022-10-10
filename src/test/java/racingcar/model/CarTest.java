@@ -14,7 +14,7 @@ public class CarTest {
     @DisplayName("자동차의 이름이 5자가 넘는 경우 IllegalStateException Exception 발생")
     void invalidName() {
         assertThatThrownBy(() ->
-                new Car(new Identification("christophe"))
+                new Car(new Name("christophe"))
         ).isInstanceOf(IllegalArgumentException.class).hasMessageStartingWith("[ERROR]:");
     }
 
@@ -22,9 +22,9 @@ public class CarTest {
     @DisplayName("자동차의 이름이 1~5자 사이라면 정상계")
     void validName() {
         assertAll(
-                () -> assertThat(new Car(new Identification("john")).getName().getName()).contains("john"),
-                () -> assertThat(new Car(new Identification("123")).getName().getName()).contains("123"),
-                () -> assertThat(new Car(new Identification("john5")).getName().getName()).contains("john5")
+                () -> assertThat(new Car(new Name("john")).getName().getValue()).contains("john"),
+                () -> assertThat(new Car(new Name("123")).getName().getValue()).contains("123"),
+                () -> assertThat(new Car(new Name("john5")).getName().getValue()).contains("john5")
         );
     }
 
@@ -32,7 +32,7 @@ public class CarTest {
     @DisplayName("null을 보낸경우 IllegalStateException exception을 발생시킨다")
     void name_with_value_null() {
         assertThatThrownBy(() ->
-                new Car(new Identification(null))
+                new Car(new Name(null))
         ).isInstanceOf(IllegalArgumentException.class).hasMessageStartingWith("[ERROR]:");
     }
 
@@ -40,7 +40,7 @@ public class CarTest {
     void move() {
         int GAME_RANGE_BEGIN = 0;
         int GAME_RANGE_END = 5;
-        Car car = new Car(new Identification("Mike"));
+        Car car = new Car(new Name("Mike"));
         for (int i = GAME_RANGE_BEGIN; i < GAME_RANGE_END; i++) {
             car.move();
         }
@@ -59,7 +59,8 @@ public class CarTest {
     @DisplayName("should be able to retrieve carName")
     void getNameInString() {
         String carName = "john";
-        Car car = new Car(carName);
+        Name name = new Name(carName);
+        Car car = new Car(name);
         assertEquals(car.getNameInString(), carName);
     }
 }

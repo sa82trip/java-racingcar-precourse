@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.Name;
 
 class RaceServiceTest {
 
@@ -32,7 +33,7 @@ class RaceServiceTest {
         Cars cars = service.returnCars("John,Mike,Krist");
         assertAll(
                 () -> assertThat(cars.getValue()).hasSize(3),
-                () -> cars.getValue().forEach(one -> assertThat("John,Mike,Krist").contains(one.getName().getName()))
+                () -> cars.getValue().forEach(one -> assertThat("John,Mike,Krist").contains(one.getName().getValue()))
         );
     }
 
@@ -52,7 +53,8 @@ class RaceServiceTest {
         Cars winners = new Cars(new ArrayList<>(Collections.singletonList("john")));
         winners.getValue().get(0).getPosition().setPosition(3);
         int MAX = winners.getValue().get(0).getPositionInteger();
-        Car car = new Car("mike");
+        Name name = new Name("mike");
+        Car car = new Car(name);
         car.getPosition().setPosition(3);
         service.addCoWinner(MAX, winners, car);
         assertThat(winners.getValue().size()).isEqualTo(2);
@@ -62,7 +64,8 @@ class RaceServiceTest {
     void getMax() {
         Cars winners = new Cars(new ArrayList<>());
         int MAX = 0;
-        Car car = new Car("mike");
+        Name name = new Name("mike");
+        Car car = new Car(name);
         car.getPosition().setPosition(3);
         int result = service.getMax(MAX, winners, car);
         assertThat(result).isEqualTo(3);

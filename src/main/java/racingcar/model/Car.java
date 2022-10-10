@@ -4,16 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.constant.ConstantNumber;
 
 public class Car {
-    private final Identification name;
+    private final Name name;
     private final CarPosition position;
 
-    public Car(Identification name) {
+    public Car(Name name) {
         this.name = name;
-        this.position = new CarPosition();
-    }
-
-    public Car(String name) {
-        this.name = new Identification(name);
         this.position = new CarPosition();
     }
 
@@ -40,11 +35,11 @@ public class Car {
         return dashes.toString();
     }
 
-    public Identification getName() {
+    public Name getName() {
         return name;
     }
 
     public String getNameInString() {
-        return name.getName();
+        return name.getValue();
     }
 }
