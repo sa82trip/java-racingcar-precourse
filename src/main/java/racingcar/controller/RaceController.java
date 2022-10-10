@@ -16,6 +16,7 @@ public class RaceController {
         this.view = view;
         this.raceService = raceService;
         this.cars = null;
+        this.gameNumber = null;
     }
 
     public void run() {
