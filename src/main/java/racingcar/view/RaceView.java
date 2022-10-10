@@ -1,7 +1,6 @@
 package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import racingcar.constant.ConstantNumber;
 import racingcar.constant.InfoMessage;
 import racingcar.model.Car;
 import racingcar.model.CarPosition;
@@ -42,7 +41,7 @@ public class RaceView {
     }
 
     public void reportCurrentStatus(GameNumber gameNumber, Cars cars) {
-        for (int i = ConstantNumber.MIN_INDEX; i < gameNumber.getNumber(); i++) {
+        for (int i = 0; i < gameNumber.getNumber(); i++) {
             displayStatus(cars);
         }
     }

@@ -10,9 +10,6 @@ import racingcar.model.GameNumber;
 
 public class RaceService {
 
-    public static final int ZERO = 0;
-    public static final int INDEX_ZERO = 0;
-
     public Cars returnCars(String carsNameInput) {
         String[] splitCars = carsNameInput.split(",");
         try {
@@ -37,7 +34,7 @@ public class RaceService {
     }
 
     public Cars detectWinner(Cars competitors) {
-        int max = ZERO;
+        int max = ConstantNumber.ZERO;
         Cars winnerCars = new Cars(new ArrayList<>());
         for (Car car : competitors.getCars()) {
             max = getMax(max, winnerCars, car);
@@ -47,14 +44,14 @@ public class RaceService {
     }
 
     protected void addCoWinner(int max, Cars winnerCars, Car car) {
-        if (max == car.getPositionInteger() && !winnerCars.getCars().get(INDEX_ZERO).getNameInString()
+        if (max == car.getPositionInteger() && !winnerCars.getCars().get(0).getNameInString()
                 .equals(car.getNameInString())) {
             winnerCars.getCars().add(car);
         }
     }
 
     protected int getMax(int max, Cars winnerCars, Car car) {
-        if (max == ZERO || max < car.getPositionInteger()) {
+        if (max == ConstantNumber.ZERO || max < car.getPositionInteger()) {
             max = car.getPositionInteger();
             winnerCars.getCars().clear();
             winnerCars.getCars().add(car);
@@ -71,15 +68,16 @@ public class RaceService {
             winnerNames.append(", ");
             winnerNames.append(car.getNameInString());
         }
-        return winnerNames.substring(1).trim();
+        return winnerNames.substring(ConstantNumber.EXCLUDE_FIRST_LETTER).trim();
     }
 
     public Cars beginRace(GameNumber gameNumber, Cars cars) {
-        for (int i = ConstantNumber.MIN_INDEX; i < gameNumber.getNumber(); i++) {
+        for (int i = 0; i < gameNumber.getNumber(); i++) {
             move(cars);
         }
         return cars;
     }
+
 
 }
 
